@@ -109,11 +109,13 @@ def lookup(chord):
         # just modifiers pressed on their own, used a lot in windows apparently
         character = ""
     else:
+        secondMatch = re.fullmatch(r'([#STKPWHR]*)([AO]*)([EU]*)', pattern)
+        if secondMatch is None:
+            raise KeyError
         # use * to distinguish symbol input from numerical or character input
         if "*" in seperator:
             # symbol input
             # extract the part of the symbol input
-            secondMatch = re.fullmatch(r'([STKPWHR]*)([AO]*)([EU]*)', pattern)
             # into variables
             (pattern, variants, vowel2) = secondMatch.groups()
             # if the pattern is not recognised, error out
@@ -141,7 +143,6 @@ def lookup(chord):
         else:
             # numbers or letters
             # extract relevant parts of the stroke
-            secondMatch = re.fullmatch(r'([STKPWHR]*)([AO]*)([-EU]*)', pattern)
             (shape, number, vowel2) = secondMatch.groups()
 
             # AO is unused in finger spelling, thus used to disginguish numerical input
