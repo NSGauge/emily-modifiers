@@ -109,7 +109,7 @@ def lookup(chord):
         # just modifiers pressed on their own, used a lot in windows apparently
         character = ""
     else:
-        secondMatch = re.fullmatch(r'([#STKPWHR]*)([AO]*)([EU]*)', pattern)
+        secondMatch = re.fullmatch(r'([#STKPWHR]*)([AO]*)([-EU]*)', pattern)
         if secondMatch is None:
             raise KeyError
         # use * to distinguish symbol input from numerical or character input
